@@ -1,19 +1,14 @@
-"""
-from config import API_URL
-import requests
-
-def run_pipeline():
-    print(f"Connecting to: {API_URL}")
-
-if __name__ == "__main__":
-    run_pipeline()    
-
-"""    
 import requests
 import sqlite3
+import logging
 from config import API_URL
 
+# Setup logging to show the timestamp automatically
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 def run_pipeline():
+    logging.info("Starting extraction process")
+
     # 1. EXTRACT
     print(f"Connecting to {API_URL}")
     response = requests.get(API_URL, timeout=5)

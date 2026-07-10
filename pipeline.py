@@ -33,7 +33,7 @@ def run_pipeline():
         # 4. FINAL SUCCESS LOG
         print("Success! Joke saved to database.")
 
-    except requets.exceptions.RequestException as e:    
+    except requests.exceptions.RequestException as e:    
         # If the API_URL is wrong, or the network is down
         logging.error(f"Failed to connect to {API_URL}: {e}")
     except sqlite3.Error as e:

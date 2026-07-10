@@ -8,8 +8,15 @@ class JokePipeline:
     
     def __init__(self, db_name):
         self.db_name = db_name
-        #logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        # Setup Loggin immdediately
         logging.basicConfig(level=logging.INFO)
+
+        # Setup Database (Table Creation) once
+        conn = sqlite3.connect(self.db_name)
+        cursor = conn.cursor()
+        cursor.execute('CREATE TABLE IF NOT EXISTS jokes (setup TEXT, punchline TEXT)')
+        conn.commit()
+        conn.close()
 
     def fetch_joke(self):
         logging.info("Fetching a new joke ... ")
@@ -23,12 +30,18 @@ class JokePipeline:
 
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
-        cursor.execute('CREATE TABLE IF NOT EXISTS jokes (setup TEXT, punchline TEXT)')
-        cursor.execute('INSERT INTO jokes (setup, punchline) VALUES (?,?)', (setup, punchline))
-        conn.commit()
+        
+        # Check for the comming data
+        cursor.execute('SELECT * FROM jokes WHERE setup = ?', (setup,))
+        if cursor.fetchone():
+            logging.info("Duplicate detected! Skipping.")
+        else:
+            # Insert
+            cursor.execute('INSERT INTO jokes (setup, punchline) VALUES (?,?)', (setup, punchline))
+            conn.commit()
+            
+            logging.info(f"Saving jokes to {self.db_name}")
         conn.close()
-
-        logging.info(f"Saving jokes to {self.db_name}")
 
     def run(self):
         try:
@@ -39,5 +52,5 @@ class JokePipeline:
             logging.error(f"Pipeline failed: {e}")        
 
 if __name__ == "__main__":
-    pipeline = JokePipeline("jokes.db")
+    pipeline = JokePipeline("jokes_2.db")
     pipeline.run()            

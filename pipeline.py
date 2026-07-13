@@ -29,10 +29,14 @@ class JokePipeline:
         conn.close()
 
     def fetch_joke(self):
-        logging.info("Fetching a new joke ... ")
-        response = requests.get(API_URL, timeout=5)
-        response.raise_for_status
-        return response.json()
+        try:
+            logging.info("Fetching a new joke ... ")
+            response = requests.get(API_URL, timeout=5)
+            response.raise_for_status
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            logging.error(f"Failed to fetch joke: {e}")
+            return None
     
     def save_joke(self, joke_data):
         setup = joke_data.get("setup", "No setup")
@@ -55,9 +59,13 @@ class JokePipeline:
 
     def run(self):
         try:
-          data = self.fetch_joke()
-          self.save_joke(data)
-          logging.info("Pipeline complete.")
+            data = self.fetch_joke()
+            if data is None:
+                logging.warning("Pipelline stopping: No data fetched.")
+                return 
+            
+            self.save_joke(data)
+            logging.info("Pipeline complete.")
         except Exception as e:
             logging.error(f"Pipeline failed: {e}")        
 

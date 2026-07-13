@@ -12,7 +12,14 @@ class JokePipeline:
     def __init__(self):
         self.db_name = os.getenv("DB_NAME")
         # Setup Loggin immdediately
-        logging.basicConfig(level=logging.INFO)
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler("pipeline.log"),
+                logging.StreamHandler()
+            ]
+        )
 
         # Setup Database (Table Creation) once
         conn = sqlite3.connect(self.db_name)

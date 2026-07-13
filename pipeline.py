@@ -1,13 +1,16 @@
 import requests
 import sqlite3
 import logging
+import os
 from config import API_URL
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class JokePipeline:
     
-    def __init__(self, db_name):
-        self.db_name = db_name
+    def __init__(self):
+        self.db_name = os.getenv("DB_NAME")
         # Setup Loggin immdediately
         logging.basicConfig(level=logging.INFO)
 
@@ -52,5 +55,5 @@ class JokePipeline:
             logging.error(f"Pipeline failed: {e}")        
 
 if __name__ == "__main__":
-    pipeline = JokePipeline("jokes_2.db")
+    pipeline = JokePipeline()
     pipeline.run()            

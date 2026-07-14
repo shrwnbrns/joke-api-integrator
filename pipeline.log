@@ -1,3 +1,47 @@
 2026-07-13 15:07:05,267 - INFO - Fetching a new joke ... 
 2026-07-13 15:07:06,355 - INFO - Saving jokes to jokes_2.db
 2026-07-13 15:07:06,357 - INFO - Pipeline complete.
+2026-07-13 15:16:54,365 - INFO - Fetching a new joke ... 
+2026-07-13 15:16:55,586 - INFO - Saving jokes to jokes_2.db
+2026-07-13 15:16:55,587 - INFO - Pipeline complete.
+2026-07-13 15:28:27,213 - INFO - Fetching a new joke ... 
+2026-07-13 15:28:28,303 - INFO - Saving jokes to jokes_2.db
+2026-07-13 15:28:28,304 - INFO - Pipeline complete.
+2026-07-13 15:29:49,377 - INFO - Fetching a new joke ... 
+2026-07-13 15:29:49,502 - ERROR - Fialed to fetch joke: HTTPSConnectionPool(host='this-url-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='this-url-does-not-exist-12345.com', port=443): Failed to resolve 'this-url-does-not-exist-12345.com' ([Errno 11001] getaddrinfo failed)"))
+2026-07-13 15:29:49,504 - WARNING - Pipelline stopping: No data fetched.
+2026-07-13 15:30:20,612 - INFO - Fetching a new joke ... 
+2026-07-13 15:30:20,629 - ERROR - Failed to fetch joke: HTTPSConnectionPool(host='this-url-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='this-url-does-not-exist-12345.com', port=443): Failed to resolve 'this-url-does-not-exist-12345.com' ([Errno 11001] getaddrinfo failed)"))
+2026-07-13 15:30:20,629 - WARNING - Pipelline stopping: No data fetched.
+2026-07-14 17:32:54,927 - INFO - Fetching a new joke ... 
+2026-07-14 17:32:56,165 - INFO - Saving jokes to jokes_2.db
+2026-07-14 17:32:56,166 - INFO - Pipeline complete.
+2026-07-14 17:34:40,922 - INFO - Fetching a new joke ... 
+2026-07-14 17:34:40,980 - ERROR - The API is too slow, moving on! HTTPSConnectionPool(host='official-joke-api.appspot.com', port=443): Max retries exceeded with url: /random_joke (Caused by ConnectTimeoutError(<HTTPSConnection(host='official-joke-api.appspot.com', port=443) at 0x27dc409fcb0>, 'Connection to official-joke-api.appspot.com timed out. (connect timeout=0.0001)'))
+2026-07-14 17:34:40,981 - WARNING - Pipelline stopping: No data fetched.
+2026-07-14 17:44:23,984 - INFO - Fetching a new joke ... 
+2026-07-14 17:44:24,250 - ERROR - The API is too slow, moving on! HTTPSConnectionPool(host='official-joke-api.appspot.com', port=443): Max retries exceeded with url: /random_joke (Caused by ConnectTimeoutError(<HTTPSConnection(host='official-joke-api.appspot.com', port=443) at 0x28abd6ffcb0>, 'Connection to official-joke-api.appspot.com timed out. (connect timeout=0.0001)'))
+2026-07-14 17:44:24,250 - WARNING - Pipelline stopping: No data fetched.
+2026-07-14 17:44:48,125 - INFO - Fetching a new joke ... 
+2026-07-14 17:44:52,034 - WARNING - Received incomplate joke data. Dropping record.
+2026-07-14 17:44:52,035 - INFO - Pipeline complete.
+2026-07-14 17:48:30,553 - WARNING - Received incomplate joke data. Dropping record.
+2026-07-14 17:48:30,554 - INFO - Pipeline complete.
+2026-07-14 17:51:05,501 - INFO - Fetching a new joke ... 
+2026-07-14 17:51:06,708 - WARNING - Received incomplate joke data. Dropping record.
+2026-07-14 17:51:06,709 - INFO - Pipeline complete.
+2026-07-14 18:00:13,928 - INFO - Fetching a new joke ... 
+2026-07-14 18:00:15,157 - WARNING - Received incomplate joke data. Dropping record.
+2026-07-14 18:00:15,158 - INFO - Pipeline complete.
+2026-07-14 18:03:28,350 - INFO - Fetching a new joke ... 
+2026-07-14 18:03:29,399 - INFO - DEBUG: Raw data received: {'type': 'general', 'setup': 'Why do bananas have to put on sunscreen before they go to the beach?', 'punchline': 'Because they might peel!', 'id': 340}
+2026-07-14 18:03:29,400 - WARNING - Received incomplate joke data. Dropping record.
+2026-07-14 18:03:29,401 - INFO - Pipeline complete.
+2026-07-14 18:07:06,555 - INFO - Fetching a new joke ... 
+2026-07-14 18:07:07,839 - INFO - DEBUG: Raw data received: {'type': 'general', 'setup': 'My older brother always tore the last pages of my comic books, and never told me why.', 'punchline': 'I had to draw my own conclusions.', 'id': 386}
+2026-07-14 18:07:07,855 - INFO - Saving jokes to jokes_2.db
+2026-07-14 18:07:07,856 - INFO - Pipeline complete.
+2026-07-14 18:09:35,944 - INFO - Fetching a new joke ... 
+2026-07-14 18:09:37,251 - INFO - DEBUG: Raw data received: {'type': 'general', 'setup': 'What do you call a troublesome Canadian high schooler?', 'punchline': 'A poutine.', 'id': 216}
+2026-07-14 18:09:37,265 - INFO - Saving jokes to jokes_2.db
+2026-07-14 18:09:37,266 - INFO - Pipeline complete.

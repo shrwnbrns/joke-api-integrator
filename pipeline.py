@@ -7,6 +7,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+session = requests.Session()
+
+session.headers.update({
+    "User-Agent": "My-App/1.0",
+    "Accept": "application/json"
+})
+
 class JokePipeline:
     
     def __init__(self):
@@ -31,16 +38,26 @@ class JokePipeline:
     def fetch_joke(self):
         try:
             logging.info("Fetching a new joke ... ")
-            response = requests.get(API_URL, timeout=5)
+            response = session.get(API_URL, timeout=5)
             response.raise_for_status
             return response.json()
+        except requests.exceptions.Timeout as e:
+            logging.error(f"The API is too slow, moving on! {e}")    
         except requests.exceptions.RequestException as e:
             logging.error(f"Failed to fetch joke: {e}")
             return None
     
     def save_joke(self, joke_data):
-        setup = joke_data.get("setup", "No setup")
-        punchline = joke_data.get("punchline", "No punchline")
+
+        # Check the data you are receiving
+        logging.info(f"DEBUG: Raw data received: {joke_data}")
+
+        setup = joke_data.get("setup")
+        punchline = joke_data.get("punchline")
+
+        if not setup or not punchline:
+            logging.warning("Received incomplate joke data. Dropping record.")
+            return 
 
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
@@ -61,7 +78,7 @@ class JokePipeline:
         try:
             data = self.fetch_joke()
             if data is None:
-                logging.warning("Pipelline stopping: No data fetched.")
+                logging.warning("Pipeline stopping: No data fetched.")
                 return 
             
             self.save_joke(data)

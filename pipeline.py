@@ -7,17 +7,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-session = requests.Session()
-
-session.headers.update({
-    "User-Agent": "My-App/1.0",
-    "Accept": "application/json"
-})
-
 class JokePipeline:
     
     def __init__(self):
         self.db_name = os.getenv("DB_NAME")
+        
+        # Define the session here so 'self.session' exists
+        self.session = requests.Session()
+
+        # Set the headers on this specific instance
+        self.session.headers.update({
+            "User-Agent": "My-App/1.0",
+            "Accept": "application/json"
+        })
+
         # Setup Loggin immdediately
         logging.basicConfig(
             level=logging.INFO,
@@ -36,9 +39,18 @@ class JokePipeline:
         conn.close()
 
     def fetch_joke(self):
+        # Retrieve the key securely from the environment
+        api_key = os.getenv("JOKE_API_KEY")
+
+        # Inject the key into the sessio headers
+        self.session.headers.update({"X-API-Key": api_key})
+
+        # Add it to the session headers so it's sent with every request
+        self.session.headers.update({"X-API-Key": api_key})
+
         try:
             logging.info("Fetching a new joke ... ")
-            response = session.get(API_URL, timeout=5)
+            response = self.session.get(API_URL, timeout=5)
             response.raise_for_status
             return response.json()
         except requests.exceptions.Timeout as e:

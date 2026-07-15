@@ -45,3 +45,12 @@
 2026-07-14 18:09:37,251 - INFO - DEBUG: Raw data received: {'type': 'general', 'setup': 'What do you call a troublesome Canadian high schooler?', 'punchline': 'A poutine.', 'id': 216}
 2026-07-14 18:09:37,265 - INFO - Saving jokes to jokes_2.db
 2026-07-14 18:09:37,266 - INFO - Pipeline complete.
+2026-07-15 15:35:36,387 - ERROR - Pipeline failed: 'JokePipeline' object has no attribute 'session'
+2026-07-15 15:40:09,176 - INFO - Fetching a new joke ... 
+2026-07-15 15:40:10,223 - INFO - DEBUG: Raw data received: {'type': 'general', 'setup': 'Why are oranges the smartest fruit?', 'punchline': 'Because they are made to concentrate. ', 'id': 303}
+2026-07-15 15:40:10,225 - INFO - Duplicate detected! Skipping.
+2026-07-15 15:40:10,226 - INFO - Pipeline complete.
+2026-07-15 15:41:50,524 - INFO - Fetching a new joke ... 
+2026-07-15 15:41:51,552 - INFO - DEBUG: Raw data received: {'type': 'general', 'setup': 'Did you watch the new comic book movie?', 'punchline': 'It was very graphic!', 'id': 66}
+2026-07-15 15:41:51,587 - INFO - Saving jokes to jokes_2.db
+2026-07-15 15:41:51,588 - INFO - Pipeline complete.
